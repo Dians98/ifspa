@@ -41,6 +41,12 @@ Admin de dev : identifiants `SEED_ADMIN_*` dans `.env`.
 - **Rôles** : `admin` et `user`. `user` ne supprime ni n'annule rien, n'accède pas aux Paramètres. **Vérifier le rôle côté serveur** dans chaque Server Action / route (`requireRole`), pas seulement en masquant les boutons.
 - **Pas de journal d'audit** (retiré à la demande du client). Les annulations restent tracées sur l'objet lui-même (`annulePar`, `dateAnnulation`, motif).
 
+## Agents du projet (`.claude/agents/`)
+
+- **planner** : avant de démarrer une phase de PLAN.md, découpe en tâches (fichiers, drapeaux 💰 🔐 🗄️ 🎨 🧾, critères de fin). Il ne modifie rien.
+- **ui-builder** : tout travail d'écran (shadcn + tokens bleu nuit et rose, skill impeccable, maquettes `prototype/`).
+- **tester** : après l'ajout ou la modification d'une règle testable (écolage, numérotation, rôles, annulations, admissions). Il n'intervient pas pour un écran ou de la doc.
+
 ## Conventions
 
 - Interface, messages et noms métier en **français** (modèles Prisma : `Etudiant`, `Paiement`…). Code technique en anglais toléré.
