@@ -31,7 +31,6 @@ A tool built for one specific institute and its real rules, not a generic school
 - enrollment fee plus 10 monthly installments from October to July;
 - cash and Mobile Money (MVola, Orange Money, Airtel Money);
 - IF/SF student IDs that never change;
-- receipts verifiable by QR code;
 - promotion from one year to the next with repeaters handled.
 
 ## Operating Context
@@ -44,7 +43,7 @@ A tool built for one specific institute and its real rules, not a generic school
   - chasing unpaid fees;
   - the batch year-to-year promotion at the start of the school year;
   - adjustments by the admin.
-- **Documents produced**: payment receipts (numbered `R-YYYY-NNNNN`, with the amount in words and a QR code) and fee statements for parents.
+- **Documents produced**: payment receipts (numbered `R-YYYY-NNNNN`, with the amount in words; no QR code) and fee statements for parents.
 
 ## Capabilities and Constraints
 

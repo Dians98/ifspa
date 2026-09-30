@@ -33,8 +33,10 @@ Admin de dev : identifiants `SEED_ADMIN_*` dans `.env`.
 
 - **Matricule** `{CODE_FILIERE}-{ANNEE_ENTREE}-{NNNN}` (ex. `IF-2026-0001`), séquence par filière et année d'entrée, via la table `Compteur` (incrément atomique en transaction). **Ne change jamais**, même en cas de redoublement.
 - **Filières** : `IF` Infirmier(e)s, `SF` Sage-femmes. Durée configurable par filière.
-- **Écolage** : droits d'inscription annuels + mensualités (10 mois, octobre→juillet par défaut). Les `Echeance` sont générées à l'inscription et **copient** le montant du `Tarif` (un changement de tarif ne réécrit pas le passé). Paiements répartis de l'échéance la plus ancienne à la plus récente. **Pas de notion d'« arriérés »** (retirée à la demande du client) : chaque année scolaire est suivie pour elle-même, ses impayés restent dus sur cette année, rien n'est « reporté ».
-- **Reçu = ticket d'imprimante thermique 80 mm** (option 58 mm), monochrome, jamais A4/A5. Seul le relevé d'écolage est en A4.
+- **Écolage** : droits d'inscription annuels + mensualités (10 mois, octobre→juillet par défaut). Les `Echeance` sont générées à l'inscription et **copient** le montant du `Tarif` (un changement de tarif ne réécrit pas le passé). Paiements répartis de l'échéance la plus ancienne à la plus récente. **Pas de paiement partiel** (retiré à la demande du client) : un paiement solde toujours des échéances entières (on coche des mois, pas d'acompte ni de montant libre) ; une échéance est payée, en retard ou à venir, jamais « partielle ». **Pas de notion d'« arriérés »** (retirée à la demande du client) : chaque année scolaire est suivie pour elle-même, ses impayés restent dus sur cette année, rien n'est « reporté ».
+- **Droits d'inscription en 1, 2 ou 3 tranches** (choix à l'inscription) : octobre, novembre, décembre ; encaissés au guichet comme les mensualités.
+- **Encaissement hors ligne** (écran Encaisser uniquement) : copie locale légère (IndexedDB), file d'attente, blocs de numéros de reçu réservés par poste, synchronisation automatique et manuelle. Détails dans PLAN.md.
+- **Reçu = ticket d'imprimante thermique 80 mm** (option 58 mm), monochrome, jamais A4/A5, **sans QR code**. Seul le relevé d'écolage est en A4.
 - **Montants** en ariary, entiers (`Int`), jamais de décimales.
 - **Aucune suppression physique de paiement** : l'admin l'annule (`annule`, motif, auteur, date). Reçu numéroté `R-{ANNEE}-{NNNNN}`.
 - **Admissions en lot** : transaction ; l'annulation (admin uniquement) est bloquée si des paiements existent sur les inscriptions créées.
@@ -53,4 +55,4 @@ Admin de dev : identifiants `SEED_ADMIN_*` dans `.env`.
 - Logique métier dans des fonctions pures testables : `src/lib/{matricule,ecolage,montant-en-lettres}.ts`, tests dans `tests/`.
 - Accès base uniquement côté serveur via `db` de `src/lib/db.ts` (`server-only`).
 - Mutations dans `src/server/actions/*.ts` : valider avec zod, vérifier le rôle, puis `revalidatePath`/`refresh`.
-- Couleurs uniquement via les tokens CSS (`--primary`, `--accent`…) ; couleurs de statut (payé/partiel/retard) distinctes du rose d'accent.
+- Couleurs uniquement via les tokens CSS (`--primary`, `--accent`…) ; couleurs de statut (payé/retard/à venir) distinctes du rose d'accent ; `--attention` (orange) réservé aux avertissements.
