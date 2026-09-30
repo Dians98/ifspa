@@ -1,0 +1,133 @@
+{
+  "title": "Choisir l'univers visuel de la landing IFSPA",
+  "question": "Trois directions complètes, chacune avec sa maquette HTML (ouvrir le fichier .html pour la voir en vrai, versions ordinateur et mobile). Garde celle qui te parle, prends une alternative ou relance le tirage.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "La blouse et ses liserés",
+      "kicker": "THE ROLL",
+      "lineage": "La blouse blanche des élèves paramédicaux : passepoil de couleur, écusson brodé, galons d'épaulette",
+      "thesis": "L'institut se présente comme la tenue que ses étudiants gagnent : du blanc, et un liseré qui dit qui l'on est.",
+      "palette": ["#fbfcfd", "#1e3a5f", "#4a7fb5", "#d4798c", "#a84860"],
+      "materials": ["coton blanc", "passepoil bleu et rose", "écusson brodé", "galons d'année"],
+      "viewport": "Deux liserés bleu et rose courent tout le long de la page comme une patte de boutonnage ; le nom complet en grand à gauche, le logo cousu en écusson à droite.",
+      "risk": "Le bleu = infirmier / rose = sage-femme doit rester un code, pas un cliché de genre ; à formuler avec soin.",
+      "raised": [
+        { "from": "challenger-cracktro", "raise": "Aucune carte : les sections ne sont séparées que par des filets et des liserés." },
+        { "from": "challenger-glaze", "raise": "Chaque affirmation officielle porte son numéro d'arrêté juste à côté, comme une fiche de recette." },
+        { "from": "challenger-ikebana", "raise": "La date du dernier renouvellement tient seule, en grand, dans un champ blanc." },
+        { "from": "challenger-nixie", "raise": "Dates et numéros d'arrêtés composés en chiffres tabulaires, comme des repères fixes." }
+      ],
+      "comp": "assigned.png"
+    },
+    {
+      "id": "model-pick",
+      "label": "L'Arrêté",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Le dossier administratif malgache : en-tête, « VU », articles, tampon rond",
+      "thesis": "La page est le dossier officiel de l'institut : la légitimité se montre par ses pièces, elle ne se proclame pas.",
+      "palette": ["#f8fafc", "#0f3e6e", "#0f6ca8", "#d9546f", "#e4eaf1"],
+      "materials": ["papier administratif blanc", "encre bleue", "tampon encreur rose", "perforations de classement"],
+      "viewport": "Une feuille posée sur le bureau : en-tête de l'institut, ligne « Objet », grand titre, tampon rond incliné ; les quatre arrêtés en « VU » juste en dessous.",
+      "risk": "C'est la direction la plus attendue pour une institution ; peut paraître austère et long à lire sur mobile.",
+      "comp": "model-pick.png"
+    },
+    {
+      "id": "challenger-folio",
+      "label": "Le parcours en planches",
+      "verdict": "competitive",
+      "lineage": "Folio botanique : une même plante suivie de la graine au fruit, planches à échelle fixe",
+      "thesis": "On suit l'étudiant de la 1re année au diplôme, quatre planches sur une même ligne de base, par filière.",
+      "palette": ["#fbfcfc", "#0f5e6e", "#2a8f86", "#b9737f", "#95505d"],
+      "materials": ["planches cintrées", "dessin au trait", "blanc de chaux (au lieu de la crème du folio)"],
+      "viewport": "Titre « De la première année au diplôme », sélecteur Infirmier(e)s / Sage-femmes, quatre arches illustrées alignées.",
+      "case": "Se fond bien : le parcours par années est exactement ce que gère l'application ; perd de peu sur l'identification du public.",
+      "risk": "Les textes par année décrivent un programme d'études qu'il faudra faire valider par l'institut.",
+      "comp": "challenger-folio.png",
+      "hero": "https://impeccable.style/worlds/cards/editorial-sequence-montage-botanical-folio-season-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/editorial-sequence-montage-botanical-folio-season.webp"
+    },
+    {
+      "id": "challenger-ikebana",
+      "label": "Ikebana et ma",
+      "verdict": "declined",
+      "lineage": "Alcôve tokonoma, composition asymétrique",
+      "thesis": "Le vide actif autour d'une seule ligne.",
+      "palette": ["#efece6", "#6b5d4f", "#3b5ba5", "#3a2f25"],
+      "materials": ["plâtre", "branche de pin", "bronze"],
+      "viewport": "Une branche traverse l'alcôve, trois iris, un grand vide.",
+      "risk": "Univers étranger au public de Toamasina.",
+      "case": "Perd sur les deux axes : ni les parents ni les autorités ne s'y reconnaissent.",
+      "kept": "Laisser l'élément clé (le renouvellement 2024) respirer seul.",
+      "hero": "https://impeccable.style/worlds/cards/growth-metamorphosis-branching-ikebana-ma-arrangement-hero.webp"
+    },
+    {
+      "id": "challenger-glaze",
+      "label": "Étagère d'émaux",
+      "verdict": "declined",
+      "lineage": "Four de céramiste, coulures d'émail",
+      "thesis": "Chaque échantillon avec sa fiche de recette.",
+      "palette": ["#f4f4f2", "#1f4fa3", "#0e2a6b"],
+      "materials": ["étagère de four", "émail cobalt"],
+      "viewport": "Une rangée de tasses émaillées et leurs fiches.",
+      "risk": "Aucun lien avec la santé.",
+      "case": "Perd sur les deux axes.",
+      "kept": "Chaque affirmation accompagnée de sa référence.",
+      "hero": "https://impeccable.style/worlds/cards/clay-ceramics-fracture-glaze-river-shelf-hero.webp"
+    },
+    {
+      "id": "challenger-cracktro",
+      "label": "Écran cracktro",
+      "verdict": "declined",
+      "lineage": "Écrans titres de la démoscène",
+      "thesis": "Texte bitmap sur fond noir, profondeur par la luminosité.",
+      "palette": ["#050505", "#e8e2d0", "#ffb000"],
+      "materials": ["vide émissif", "poussière de pixels"],
+      "viewport": "Une ligne ivoire immobile sur fond noir.",
+      "risk": "Sombre et ludique, à l'opposé du sérieux attendu.",
+      "case": "Perd sur les deux axes.",
+      "kept": "Rien n'est enfermé dans une boîte.",
+      "hero": "https://impeccable.style/worlds/cards/operate-c-cracktro-scroller-queue-hero.webp"
+    },
+    {
+      "id": "challenger-nixie",
+      "label": "Compteur Nixie",
+      "verdict": "declined",
+      "lineage": "Tubes Nixie de laboratoire",
+      "thesis": "Les chiffres comme objets lumineux.",
+      "palette": ["#111315", "#ff7a1a", "#7d8387"],
+      "materials": ["verre", "acier noirci"],
+      "viewport": "Rangées de tubes affichant des chiffres orange.",
+      "risk": "Pas de chiffres réels à afficher sur la vitrine.",
+      "case": "Perd sur les deux axes.",
+      "kept": "Chiffres tabulaires pour les dates et références.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-nixie-laboratory-counter-hero.webp"
+    },
+    {
+      "id": "challenger-toybox",
+      "label": "Boîtes de jouets",
+      "verdict": "declined",
+      "lineage": "Rayon de boîtes à fenêtre",
+      "thesis": "Le couvercle résume, l'intérieur détaille.",
+      "palette": ["#f6efe0", "#6aa84f", "#c2185b", "#5b9bd5"],
+      "materials": ["carton", "cellophane", "vichy"],
+      "viewport": "Une étagère de boîtes éclairées.",
+      "risk": "Infantilise un établissement de santé.",
+      "case": "Perd sur les deux axes.",
+      "kept": "L'épaulette résume la filière, le détail suit.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-window-box-toy-shelf-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "canon": true,
+  "canonCard": {
+    "label": "Le standard des écoles",
+    "thesis": "Ce que publient la plupart des écoles, exécuté proprement.",
+    "palette": ["#ffffff", "#111827", "#2563eb"],
+    "materials": ["grande photo d'étudiants", "grille propre"],
+    "viewport": "Photo pleine largeur, titre, bouton, trois blocs filières / agréments / contact.",
+    "risk": "Impossible à distinguer des autres écoles ; demande des photos réelles qu'on n'a pas encore."
+  },
+  "steer": true
+}

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IFSPA — La blouse et ses liserés (maquette)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coton: #fbfcfd;
+    --coton-ombre: #eef2f6;
+    --trame: #e3e8ef;
+    --nuit: #1e3a5f;
+    --bleu: #4a7fb5;
+    --bleu-pale: #e6eef7;
+    --rose: #d4798c;
+    --rose-fonce: #a84860;
+    --rose-pale: #fbeef1;
+    --encre: #17202b;
+    --encre-2: #4a5566;
+    --fil: #b9c4d2;
+    --piping: var(--bleu);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    position: relative; min-height: 100vh;
+    margin: 0; background: var(--coton); color: var(--encre);
+    font: 400 1.0625rem/1.6 "Public Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--rose-pale); color: var(--rose-fonce); }
+  :focus-visible { outline: 2px dashed var(--nuit); outline-offset: 4px; border-radius: 4px; }
+  html { scrollbar-color: var(--fil) var(--coton); }
+  a { color: inherit; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+
+  .maquette {
+    font: 600 .75rem/1 "Barlow Semi Condensed", sans-serif; letter-spacing: .08em; text-transform: uppercase;
+    background: var(--nuit); color: #fff; text-align: center; padding: .55rem 1rem;
+  }
+
+  /* ── La patte de boutonnage : deux liserés courent sur toute la page ── */
+  .patte {
+    position: absolute; top: 0; bottom: 0; left: clamp(14px, 3.2vw, 44px); width: 14px; z-index: 5; pointer-events: none;
+    display: grid; grid-template-columns: 5px 4px 5px;
+  }
+  .patte i:nth-child(1) { background: var(--bleu); transition: background .5s cubic-bezier(.16,1,.3,1); }
+  .patte i:nth-child(3) { background: var(--rose); transition: background .5s cubic-bezier(.16,1,.3,1); }
+  body:has(.filiere[data-f="if"]:hover) .patte i:nth-child(3) { background: var(--bleu); }
+  body:has(.filiere[data-f="sf"]:hover) .patte i:nth-child(1) { background: var(--rose); }
+
+  .page { padding-left: calc(clamp(14px, 3.2vw, 44px) + 14px); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 64px); }
+
+  header.tete {
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    padding: 1.25rem 0; border-bottom: 1px solid var(--trame);
+  }
+  .sigle { display: flex; align-items: center; gap: .85rem; text-decoration: none; }
+  .sigle img { width: 64px; height: auto; }
+  .sigle b { font: 800 1.35rem/1 "Bricolage Grotesque", sans-serif; letter-spacing: .02em; color: var(--nuit); }
+  .sigle span { display: block; font: 500 .8rem/1.2 "Public Sans"; color: var(--encre-2); margin-top: .2rem; }
+  nav.menu { display: flex; align-items: center; gap: 2rem; font-weight: 500; font-size: .95rem; }
+  nav.menu a { text-decoration: none; color: var(--encre-2); }
+  nav.menu a:hover { color: var(--nuit); text-decoration: underline; }
+  .connexion {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font: 600 .95rem/1 "Public Sans"; color: #fff !important; background: var(--nuit);
+    padding: .8rem 1.15rem; border-radius: 6px; text-decoration: none !important; white-space: nowrap;
+    box-shadow: 0 0 0 3px var(--coton), 0 0 0 4px var(--nuit);
+    background-image: linear-gradient(var(--nuit), var(--nuit));
+    outline: 1px dashed rgba(255,255,255,.55); outline-offset: -5px;
+    transition: background-color .2s;
+  }
+  .connexion:hover { background-image: linear-gradient(#16304f, #16304f); }
+  .connexion svg { width: 18px; height: 18px; }
+
+  /* ── Premier écran ── */
+  .ouverture {
+    display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem);
+    align-items: center; padding: clamp(3rem, 7vw, 6.5rem) 0 clamp(3rem, 6vw, 5rem);
+  }
+  h1 {
+    font: 800 clamp(2.6rem, 5.4vw, 5.1rem)/1.02 "Bricolage Grotesque", sans-serif;
+    letter-spacing: -.035em; margin: 0 0 1.6rem; color: var(--nuit); text-wrap: balance;
+  }
+  h1 em { font-style: normal; color: var(--rose-fonce); }
+  .chapo { font-size: 1.2rem; line-height: 1.55; color: var(--encre-2); max-width: 36ch; margin: 0 0 2.2rem; }
+  .liseres { display: flex; flex-wrap: wrap; gap: .75rem 1.75rem; margin: 0; padding: 0; list-style: none; }
+  .liseres li { display: flex; align-items: center; gap: .7rem; font-weight: 600; }
+  .liseres li::before {
+    content: ""; width: 42px; height: 6px; border-radius: 3px; background: var(--c);
+    box-shadow: 0 1px 0 rgba(23,32,43,.15);
+  }
+
+  .ecusson { position: relative; justify-self: center; width: min(100%, 520px); aspect-ratio: 1.3; }
+  .ecusson svg.couture { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ecusson img {
+    position: absolute; inset: 9% 7%; width: 86%; height: 82%; object-fit: contain;
+    filter: drop-shadow(0 18px 24px rgba(30,58,95,.16));
+  }
+  .ecusson figcaption {
+    position: absolute; left: 50%; bottom: -1.5rem; transform: translateX(-50%); white-space: nowrap;
+    font: 600 .8rem/1 "Barlow Semi Condensed"; letter-spacing: .1em; text-transform: uppercase; color: var(--encre-2);
+  }
+
+  section { padding: clamp(3.5rem, 7vw, 6rem) 0; border-top: 1px solid var(--trame); }
+  h2 {
+    font: 800 clamp(1.9rem, 3.2vw, 2.8rem)/1.08 "Bricolage Grotesque"; letter-spacing: -.03em;
+    color: var(--nuit); margin: 0 0 1rem; text-wrap: balance;
+  }
+  .intro { color: var(--encre-2); max-width: 60ch; margin: 0 0 3rem; }
+
+  /* ── Filières : deux épaulettes galonnées ── */
+  .filieres { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); }
+  .filiere { --c: var(--bleu); --cp: var(--bleu-pale); }
+  .filiere[data-f="sf"] { --c: var(--rose); --cp: var(--rose-pale); }
+  .epaulette {
+    position: relative; height: 92px; border-radius: 10px 46px 46px 10px; background: var(--coton);
+    border: 1px solid var(--fil); box-shadow: 0 10px 24px -14px rgba(30,58,95,.35), inset 0 -3px 0 var(--coton-ombre);
+    display: flex; align-items: center; gap: 14px; padding: 0 64px 0 22px; margin-bottom: 1.6rem;
+    outline: 1px dashed var(--fil); outline-offset: -8px;
+  }
+  .epaulette::after {
+    content: ""; position: absolute; right: 22px; top: 50%; width: 26px; height: 26px; margin-top: -13px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff, var(--coton-ombre) 60%, var(--fil));
+    box-shadow: 0 2px 3px rgba(23,32,43,.25);
+  }
+  .galon { width: 30px; height: 56px; border-radius: 3px; background: var(--c); opacity: .22; position: relative; }
+  .galon.porte { opacity: 1; }
+  .galon span {
+    position: absolute; inset: auto 0 -1.45rem; text-align: center;
+    font: 600 .72rem/1 "Barlow Semi Condensed"; letter-spacing: .06em; color: var(--encre-2);
+  }
+  .filiere h3 { font: 800 1.75rem/1.1 "Bricolage Grotesque"; letter-spacing: -.02em; margin: 2.4rem 0 .6rem; color: var(--nuit); }
+  .filiere p { margin: 0 0 1rem; color: var(--encre-2); max-width: 46ch; }
+  .code {
+    display: inline-block; font: 600 .82rem/1 "Barlow Semi Condensed"; letter-spacing: .1em;
+    color: var(--nuit); background: var(--cp); padding: .45rem .6rem; border-radius: 4px;
+  }
+
+  /* ── Agréments : chaque affirmation porte sa référence ── */
+  .agrements { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+  .renouvellement { padding-top: .5rem; }
+  .renouvellement .date {
+    font: 800 clamp(3.2rem, 6vw, 5rem)/.95 "Bricolage Grotesque"; letter-spacing: -.04em; color: var(--nuit);
+    font-variant-numeric: tabular-nums; display: block;
+  }
+  .renouvellement p { color: var(--encre-2); max-width: 30ch; }
+  .registre { list-style: none; margin: 0; padding: 0; }
+  .registre li {
+    display: grid; grid-template-columns: 11.5rem 1fr; gap: 1.5rem; padding: 1.35rem 0;
+    border-bottom: 1px dashed var(--fil);
+  }
+  .registre li:first-child { border-top: 1px solid var(--trame); }
+  .ref { font: 600 .95rem/1.4 "Barlow Semi Condensed"; letter-spacing: .03em; color: var(--nuit); font-variant-numeric: tabular-nums; }
+  .registre p { margin: 0; }
+
+  /* ── Contact ── */
+  .contact { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+  .contact dt { font: 600 .8rem/1 "Barlow Semi Condensed"; letter-spacing: .1em; text-transform: uppercase; color: var(--encre-2); margin-bottom: .6rem; }
+  .contact dd { margin: 0; font-size: 1.1rem; }
+  .a-completer { color: var(--rose-fonce); border-bottom: 1px dashed currentColor; }
+
+  footer { padding: 2rem 0 3rem; border-top: 1px solid var(--trame); color: var(--encre-2); font-size: .9rem;
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 860px) {
+    nav.menu a:not(.connexion) { display: none; }
+    .ouverture, .filieres, .agrements, .contact { grid-template-columns: 1fr; }
+    .ecusson { order: -1; width: min(100%, 360px); }
+    .registre li { grid-template-columns: 1fr; gap: .35rem; }
+    .sigle span { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="patte" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="page">
+  <div class="maquette">Maquette — textes des filières, durée des études, adresse et contacts à confirmer</div>
+  <div class="wrap">
+    <header class="tete">
+      <a class="sigle" href="#">
+        <img src="../../../public/brand/logo-ifspa.png" alt="Logo de l'IFSPA">
+        <div><b>IFSPA</b><span>Toamasina · Atsinanana</span></div>
+      </a>
+      <nav class="menu" aria-label="Navigation principale">
+        <a href="#institut">L'institut</a>
+        <a href="#filieres">Filières</a>
+        <a href="#agrements">Agréments</a>
+        <a href="#contact">Contact</a>
+        <a class="connexion" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Se connecter
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="ouverture" id="institut">
+        <div>
+          <h1>Institut de Formation Supérieur des Paramédicaux <em>Atsinanana</em></h1>
+          <p class="chapo">Établissement supérieur privé de Toamasina, autorisé depuis 2011 et habilité dans le domaine « Science de la Santé ».</p>
+          <ul class="liseres">
+            <li style="--c: var(--bleu)">Infirmier(e)s</li>
+            <li style="--c: var(--rose)">Sage-femmes</li>
+          </ul>
+        </div>
+        <figure class="ecusson" style="margin:0">
+          <svg class="couture" viewBox="0 0 520 400" aria-hidden="true">
+            <ellipse cx="260" cy="200" rx="252" ry="192" fill="#fff" stroke="#b9c4d2" stroke-width="1"/>
+            <ellipse cx="260" cy="200" rx="240" ry="181" fill="none" stroke="#1e3a5f" stroke-width="2" stroke-dasharray="7 6" opacity=".55"/>
+          </svg>
+          <img src="../../../public/brand/logo-ifspa.png" alt="Écusson de l'Institut de Formation Supérieur des Paramédicaux Atsinanana">
+          <figcaption>Écusson officiel de l'institut</figcaption>
+        </figure>
+      </div>
+
+      <section id="filieres">
+        <h2>Deux filières, deux liserés</h2>
+        <p class="intro">Chaque filière se reconnaît à sa couleur. Les galons de l'épaulette indiquent l'année d'études, de la première année jusqu'au diplôme.</p>
+        <div class="filieres">
+          <article class="filiere" data-f="if">
+            <div class="epaulette" aria-hidden="true">
+              <div class="galon porte"><span>1re</span></div>
+              <div class="galon porte"><span>2e</span></div>
+              <div class="galon porte"><span>3e</span></div>
+            </div>
+            <h3>Infirmier(e)s</h3>
+            <p>Formation aux soins infirmiers, alternant enseignements théoriques et stages en milieu de soins.</p>
+            <span class="code">Liseré bleu · matricule IF</span>
+          </article>
+          <article class="filiere" data-f="sf">
+            <div class="epaulette" aria-hidden="true">
+              <div class="galon porte"><span>1re</span></div>
+              <div class="galon porte"><span>2e</span></div>
+              <div class="galon porte"><span>3e</span></div>
+            </div>
+            <h3>Sage-femmes</h3>
+            <p>Formation à l'accompagnement de la grossesse, de l'accouchement et du nouveau-né, avec stages en maternité.</p>
+            <span class="code">Liseré rose · matricule SF</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="agrements">
+        <div class="agrements">
+          <div class="renouvellement">
+            <h2>Agréé par le ministère de l'Enseignement supérieur</h2>
+            <span class="date">03.04.2024</span>
+            <p>Date de la dernière attestation de renouvellement de l'établissement.</p>
+          </div>
+          <ol class="registre">
+            <li><span class="ref">N° 04460/2011-MESupRes</span><p>Autorisation d'ouverture de l'établissement supérieur privé IFSPA.</p></li>
+            <li><span class="ref">N° 15482/2011-MESupRES</span><p>Habilitation de la formation dispensée, domaine « Science de la Santé ».</p></li>
+            <li><span class="ref">N° 23915/2011 CNEAT</span><p>Équivalence administrative du titre dans la Fonction publique.</p></li>
+            <li><span class="ref">N° 056/2024/MESupRes</span><p>Attestation de renouvellement du 3 avril 2024.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Nous trouver</h2>
+        <dl class="contact">
+          <div><dt>Adresse</dt><dd><span class="a-completer">À compléter</span>, Toamasina</dd></div>
+          <div><dt>Téléphone</dt><dd><span class="a-completer">À compléter</span></dd></div>
+          <div><dt>Courriel</dt><dd><span class="a-completer">À compléter</span></dd></div>
+        </dl>
+      </section>
+    </main>
+
+    <footer>
+      <span>© IFSPA — Institut de Formation Supérieur des Paramédicaux Atsinanana</span>
+      <a href="#">Espace du personnel</a>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

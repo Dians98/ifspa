@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IFSPA — L'Arrêté (maquette)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Hanken+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papier: #f8fafc;
+    --bureau: #e4eaf1;
+    --encre: #0f3e6e;
+    --encre-vive: #0f6ca8;
+    --texte: #1b2430;
+    --texte-2: #4b5868;
+    --regle: #c6d1dd;
+    --tampon: #d9546f;
+    --tampon-pale: #fbe9ed;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bureau); color: var(--texte);
+    font: 400 1.125rem/1.65 "Spectral", Georgia, serif;
+  }
+  ::selection { background: var(--tampon-pale); color: var(--encre); }
+  :focus-visible { outline: 2px solid var(--encre-vive); outline-offset: 3px; }
+  html { scrollbar-color: var(--regle) var(--bureau); }
+  a { color: var(--encre-vive); text-underline-offset: .22em; text-decoration-thickness: 1px; }
+
+  .maquette { font: 600 .75rem/1 "Hanken Grotesk", sans-serif; letter-spacing: .06em; text-transform: uppercase;
+    background: var(--encre); color: #fff; text-align: center; padding: .55rem 1rem; }
+
+  .feuille {
+    position: relative; max-width: 1180px; margin: clamp(0px, 3vw, 40px) auto; background: var(--papier);
+    box-shadow: 0 1px 2px rgba(15,62,110,.08), 0 24px 48px -24px rgba(15,62,110,.3);
+    padding: clamp(24px, 5vw, 72px) clamp(20px, 6vw, 96px) clamp(40px, 6vw, 80px);
+  }
+  /* marge de classement : perforations */
+  .feuille::before {
+    content: ""; position: absolute; left: clamp(8px, 2vw, 30px); top: 120px; bottom: 120px; width: 12px;
+    background: radial-gradient(circle, var(--bureau) 5px, transparent 5.5px) 0 0 / 12px 140px repeat-y;
+  }
+
+  .entete { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center;
+    padding-bottom: 1.25rem; border-bottom: 3px double var(--encre); }
+  .entete img { width: 96px; height: auto; }
+  .entete .nom { font: 700 1.05rem/1.3 "Spectral"; color: var(--encre); letter-spacing: .01em; }
+  .entete .nom small { display: block; font: 400 .9rem/1.4 "Courier Prime", monospace; color: var(--texte-2); }
+  .personnel {
+    font: 600 .95rem/1 "Hanken Grotesk", sans-serif; text-decoration: none; color: var(--encre);
+    border: 1.5px solid var(--encre); padding: .8rem 1.1rem; border-radius: 3px; display: inline-flex; gap: .55rem; align-items: center;
+    transition: background-color .2s, color .2s;
+  }
+  .personnel:hover { background: var(--encre); color: #fff; }
+  .personnel svg { width: 18px; height: 18px; }
+
+  nav.renvois { display: flex; gap: 1.75rem; padding: .9rem 0; border-bottom: 1px solid var(--regle);
+    font: 500 .92rem/1 "Hanken Grotesk"; }
+  nav.renvois a { color: var(--texte-2); text-decoration: none; }
+  nav.renvois a:hover { color: var(--encre); text-decoration: underline; }
+
+  .objet { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 3rem; padding: clamp(2.5rem, 6vw, 4.5rem) 0 2rem; align-items: start; }
+  .objet .ligne-objet { font: 700 .95rem/1.4 "Courier Prime", monospace; color: var(--texte-2); margin: 0 0 1.4rem; }
+  .objet .ligne-objet u { text-decoration-thickness: 1px; }
+  h1 { font: 600 clamp(2.4rem, 4.8vw, 4.3rem)/1.05 "Spectral"; letter-spacing: -.02em; color: var(--encre); margin: 0 0 1.5rem; text-wrap: balance; }
+  .objet p.chapo { font-size: 1.25rem; color: var(--texte-2); max-width: 40ch; margin: 0; font-style: italic; }
+
+  .tampon { position: relative; justify-self: end; width: 260px; aspect-ratio: 1; transform: rotate(-11deg); margin-top: 1rem; }
+  .tampon svg { width: 100%; height: 100%; }
+  .tampon text { font: 700 17px "Courier Prime", monospace; letter-spacing: 3px; fill: var(--tampon); }
+
+  .vus { list-style: none; margin: 0 0 1rem; padding: 1.75rem 0 0; border-top: 1px solid var(--regle); }
+  .vus li { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 1rem; margin-bottom: .9rem; }
+  .vus b { font: 700 1rem/1.65 "Courier Prime", monospace; color: var(--encre); }
+  .vus .ref { font: 700 1rem "Courier Prime", monospace; color: var(--encre); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .considere { font-style: italic; color: var(--texte-2); margin: 1.5rem 0 0; }
+
+  .article { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 2.5rem; padding: 2.75rem 0; border-top: 1px solid var(--regle); }
+  .article h2 { margin: 0; font: 700 1rem/1.4 "Courier Prime", monospace; color: var(--encre); text-transform: uppercase; letter-spacing: .04em; }
+  .article h3 { font: 600 1.9rem/1.15 "Spectral"; color: var(--encre); margin: 0 0 .75rem; letter-spacing: -.01em; }
+  .article p { margin: 0 0 1rem; max-width: 62ch; }
+  .alineas { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .alineas h4 { font: 600 1.35rem/1.2 "Spectral"; margin: 0 0 .5rem; color: var(--texte); }
+  .alineas .code { font: 700 .9rem "Courier Prime", monospace; color: var(--encre-vive); }
+  .blanc { display: inline-block; min-width: 14ch; border-bottom: 1px dotted var(--texte-2); color: var(--tampon); font-family: "Courier Prime", monospace; font-size: .95rem; }
+
+  .signature { display: flex; justify-content: flex-end; padding-top: 2rem; }
+  .signature div { text-align: center; font-style: italic; color: var(--texte-2); }
+  .signature b { display: block; font: 700 1rem "Courier Prime", monospace; font-style: normal; color: var(--encre); margin-top: .5rem; }
+
+  @media (max-width: 860px) {
+    .entete { grid-template-columns: auto 1fr; }
+    .entete .personnel { grid-column: 1 / -1; justify-self: start; }
+    nav.renvois { overflow-x: auto; }
+    .objet, .article, .alineas { grid-template-columns: 1fr; gap: 1.25rem; }
+    .tampon { width: 180px; justify-self: start; margin-top: 0; }
+    .feuille::before { display: none; }
+    .vus .ref { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div class="maquette">Maquette — textes des filières, durée des études, adresse et contacts à confirmer</div>
+<div class="feuille">
+  <header class="entete">
+    <img src="../../../public/brand/logo-ifspa.png" alt="Logo de l'IFSPA">
+    <div class="nom">Institut de Formation Supérieur des Paramédicaux Atsinanana<small>IFSPA — Toamasina, Madagascar</small></div>
+    <a class="personnel" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></svg>
+      Se connecter
+    </a>
+  </header>
+  <nav class="renvois" aria-label="Sommaire">
+    <a href="#vus">Agréments</a><a href="#art1">Filières</a><a href="#art2">Renseignements</a><a href="#art3">Contact</a>
+  </nav>
+
+  <main>
+    <div class="objet">
+      <div>
+        <p class="ligne-objet"><u>Objet</u> : présentation de l'établissement</p>
+        <h1>Un établissement supérieur privé de formation paramédicale, à Toamasina.</h1>
+        <p class="chapo">Deux filières, Infirmier(e)s et Sage-femmes, dans le domaine « Science de la Santé ».</p>
+      </div>
+      <div class="tampon" aria-hidden="true">
+        <svg viewBox="0 0 260 260">
+          <defs><path id="cercle" d="M130,130 m-98,0 a98,98 0 1,1 196,0 a98,98 0 1,1 -196,0"/></defs>
+          <circle cx="130" cy="130" r="122" fill="none" stroke="#d9546f" stroke-width="4"/>
+          <circle cx="130" cy="130" r="76" fill="none" stroke="#d9546f" stroke-width="2"/>
+          <text><textPath href="#cercle" startOffset="0">★ INSTITUT DE FORMATION · PARAMÉDICAUX ★ ATSINANANA ·</textPath></text>
+          <text x="130" y="124" text-anchor="middle" style="font-size:30px;letter-spacing:4px">IFSPA</text>
+          <text x="130" y="152" text-anchor="middle" style="font-size:14px;letter-spacing:2px">TOAMASINA</text>
+        </svg>
+      </div>
+    </div>
+
+    <ol class="vus" id="vus">
+      <li><b>VU</b><span>l'arrêté <span class="ref">n° 04460/2011-MESupRes</span> portant autorisation d'ouverture d'un Établissement Supérieur Privé dénommé « Institut de Formation Supérieur des Paramédicaux Atsinanana » ;</span></li>
+      <li><b>VU</b><span>l'arrêté <span class="ref">n° 15482/2011-MESupRES</span> portant habilitation de la formation dispensée, dans le domaine « Science de la Santé » ;</span></li>
+      <li><b>VU</b><span>l'arrêté <span class="ref">n° 23915/2011 CNEAT</span> portant détermination de l'équivalence administrative d'un titre dans la Fonction Publique ;</span></li>
+      <li><b>VU</b><span>l'attestation de renouvellement <span class="ref">n° 056/2024/MESupRes/SG/DGES/SG</span> du 03 avril 2024 ;</span></li>
+    </ol>
+
+    <article class="article" id="art1">
+      <h2>Article premier</h2>
+      <div>
+        <h3>Des filières</h3>
+        <p>L'institut forme aux métiers paramédicaux dans deux filières, chacune identifiée par un code repris dans le matricule de l'étudiant.</p>
+        <div class="alineas">
+          <div><h4>Infirmier(e)s</h4><p>Soins infirmiers, enseignements théoriques et stages en milieu de soins.</p><span class="code">Code IF</span></div>
+          <div><h4>Sage-femmes</h4><p>Suivi de la grossesse, de l'accouchement et du nouveau-né, stages en maternité.</p><span class="code">Code SF</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="article" id="art2">
+      <h2>Article 2</h2>
+      <div>
+        <h3>Des renseignements</h3>
+        <p>Les conditions d'admission, les pièces à fournir et les frais de scolarité sont communiqués par le secrétariat de l'institut, aux heures d'ouverture.</p>
+      </div>
+    </article>
+
+    <article class="article" id="art3">
+      <h2>Article 3</h2>
+      <div>
+        <h3>Du contact</h3>
+        <p>Adresse : <span class="blanc">à compléter</span>, Toamasina.<br>Téléphone : <span class="blanc">à compléter</span><br>Courriel : <span class="blanc">à compléter</span></p>
+      </div>
+    </article>
+
+    <div class="signature"><div>Fait à Toamasina,<b>LE SECRÉTARIAT DE L'IFSPA</b></div></div>
+  </main>
+</div>
+</body>
+</html>

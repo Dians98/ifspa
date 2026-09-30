@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IFSPA — Le parcours en planches (maquette)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --chaux: #fbfcfc;
+    --planche: #ffffff;
+    --filet: #cfdcdc;
+    --sarcelle: #0f5e6e;
+    --sarcelle-2: #2a8f86;
+    --sarcelle-pale: #e8f3f2;
+    --rose: #b9737f;
+    --rose-fonce: #95505d;
+    --rose-pale: #f7ecee;
+    --texte: #1c2b2d;
+    --texte-2: #4d5f61;
+    --acc: var(--sarcelle);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--chaux); color: var(--texte); font: 400 1.0625rem/1.6 "Karla", system-ui, sans-serif; }
+  ::selection { background: var(--rose-pale); color: var(--rose-fonce); }
+  :focus-visible { outline: 2px solid var(--sarcelle); outline-offset: 3px; }
+  html { scrollbar-color: var(--filet) var(--chaux); }
+  a { color: inherit; text-underline-offset: .25em; }
+
+  .maquette { font: 700 .75rem/1 "Karla"; letter-spacing: .08em; text-transform: uppercase; background: var(--sarcelle); color: #fff; text-align: center; padding: .55rem 1rem; }
+
+  .cadre { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+  aside {
+    border-right: 1px solid var(--filet); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 2rem;
+    position: sticky; top: 0; height: 100vh;
+  }
+  .marque { text-align: center; }
+  .marque img { width: 150px; height: auto; }
+  .marque b { display: block; font: 400 1.6rem/1 "Young Serif"; color: var(--sarcelle); margin-top: .6rem; }
+  .marque span { display: block; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--texte-2); margin-top: .4rem; }
+  aside nav { display: flex; flex-direction: column; border-top: 1px solid var(--filet); }
+  aside nav a { text-decoration: none; padding: .8rem 0; border-bottom: 1px solid var(--filet); color: var(--texte-2); font-weight: 500; display: flex; justify-content: space-between; }
+  aside nav a:hover { color: var(--sarcelle); }
+  .connexion { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: .5rem; text-decoration: none;
+    background: var(--sarcelle); color: #fff; padding: .9rem 1rem; border-radius: 4px; font-weight: 700; transition: background-color .2s; }
+  .connexion:hover { background: #0b4a57; }
+  .connexion svg { width: 18px; height: 18px; }
+
+  main { padding: 0 clamp(20px, 4.5vw, 72px); }
+
+  .ouverture { padding: clamp(2rem, 4.5vw, 3.5rem) 0 3rem; border-bottom: 1px solid var(--filet); }
+  .ouverture-haut { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end; margin-bottom: 2.25rem; }
+  h1 { font: 400 clamp(2.4rem, 4.6vw, 4.4rem)/1.05 "Young Serif", Georgia, serif; letter-spacing: -.02em; margin: 0; color: var(--texte); text-wrap: balance; }
+  h1 i { font-style: normal; color: var(--acc); transition: color .4s; }
+  .chapo { max-width: 46ch; color: var(--texte-2); margin: 1.25rem 0 0; font-size: 1.15rem; }
+
+  .bascule { justify-self: start; display: inline-flex; border: 1px solid var(--filet); border-radius: 999px; padding: 4px; background: var(--planche); }
+  .bascule input { position: absolute; opacity: 0; pointer-events: none; }
+  .bascule label { padding: .6rem 1.1rem; border-radius: 999px; cursor: pointer; font-weight: 700; font-size: .95rem; color: var(--texte-2); transition: background-color .3s, color .3s; }
+  #f-if:checked + label { background: var(--sarcelle); color: #fff; }
+  #f-sf:checked + label { background: var(--rose-fonce); color: #fff; }
+  body:has(#f-sf:checked) { --acc: var(--rose-fonce); }
+  body:has(#f-if:checked) .sf-only, body:has(#f-sf:checked) .if-only { display: none; }
+
+  .planches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px); align-items: start; }
+  .planche { text-align: center; }
+  .arche {
+    position: relative; aspect-ratio: .82; border: 1px solid var(--filet); border-radius: 999px 999px 6px 6px; background: var(--planche);
+    display: grid; place-items: center; outline: 1px solid var(--filet); outline-offset: -9px;
+    box-shadow: 0 16px 30px -22px rgba(15,94,110,.35);
+  }
+  .arche svg { width: 58%; height: auto; stroke: var(--texte); fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+  .arche svg .touche { stroke: var(--acc); transition: stroke .4s; }
+  .arche .sol { position: absolute; left: 14%; right: 14%; bottom: 13%; border-top: 1px solid var(--filet); }
+  .planche .rang { font: 400 1.5rem/1 "Young Serif"; color: var(--acc); margin: 1.1rem 0 .3rem; transition: color .4s; font-variant-numeric: tabular-nums; }
+  .planche .nom { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: .8rem; }
+  .planche p { font-size: .95rem; color: var(--texte-2); margin: .45rem auto 0; max-width: 22ch; }
+  .fil-parcours { position: relative; height: 1px; background: repeating-linear-gradient(90deg, var(--filet) 0 6px, transparent 6px 12px); margin: -1px 0 0; }
+
+  section { padding: clamp(3rem, 6vw, 5rem) 0; border-bottom: 1px solid var(--filet); }
+  h2 { font: 400 clamp(1.8rem, 3vw, 2.6rem)/1.1 "Young Serif"; margin: 0 0 1rem; letter-spacing: -.015em; text-wrap: balance; }
+  .intro { color: var(--texte-2); max-width: 60ch; margin: 0 0 2.5rem; }
+
+  .releve { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--filet); }
+  .releve div { padding: 1.5rem 1.25rem 1.5rem 0; border-right: 1px solid var(--filet); margin-right: 1.25rem; }
+  .releve div:last-child { border-right: 0; margin-right: 0; }
+  .releve .an { font: 400 2.4rem/1 "Young Serif"; color: var(--sarcelle); font-variant-numeric: tabular-nums; }
+  .releve .ref { display: block; font-weight: 700; font-size: .85rem; letter-spacing: .03em; margin: .8rem 0 .4rem; color: var(--texte); }
+  .releve p { margin: 0; font-size: .95rem; color: var(--texte-2); }
+
+  .contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+  .contact dt { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: .78rem; color: var(--texte-2); margin-bottom: .5rem; }
+  .contact dd { margin: 0; }
+  .a-completer { color: var(--rose-fonce); font-style: italic; border-bottom: 1px dashed currentColor; }
+  footer { padding: 2rem 0 3rem; color: var(--texte-2); font-size: .9rem; }
+
+  @media (max-width: 960px) {
+    .cadre { grid-template-columns: 1fr; }
+    aside { position: static; height: auto; flex-direction: row; align-items: center; justify-content: space-between; padding: 1rem 20px; border-right: 0; border-bottom: 1px solid var(--filet); }
+    .marque { display: flex; align-items: center; gap: .75rem; text-align: left; }
+    .marque img { width: 64px; }
+    .marque b { margin: 0; font-size: 1.3rem; }
+    .marque span, aside nav { display: none; }
+    .connexion { margin: 0; padding: .7rem .9rem; }
+    .ouverture-haut { grid-template-columns: 1fr; }
+    .planches { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 2rem; }
+    .releve, .contact { grid-template-columns: 1fr; }
+    .releve div { border-right: 0; margin-right: 0; border-bottom: 1px solid var(--filet); }
+  }
+</style>
+</head>
+<body>
+<div class="maquette">Maquette — textes des filières, durée des études, adresse et contacts à confirmer</div>
+<div class="cadre">
+  <aside>
+    <div class="marque">
+      <img src="../../../public/brand/logo-ifspa.png" alt="Logo de l'IFSPA">
+      <b>IFSPA</b><span>Toamasina · Atsinanana</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="#parcours">Le parcours <span aria-hidden="true">→</span></a>
+      <a href="#agrements">Agréments <span aria-hidden="true">→</span></a>
+      <a href="#contact">Contact <span aria-hidden="true">→</span></a>
+    </nav>
+    <a class="connexion" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      Se connecter
+    </a>
+  </aside>
+
+  <main>
+    <div class="ouverture" id="parcours">
+      <div class="ouverture-haut">
+        <div>
+          <h1>De la première année au diplôme de <i class="if-only">l'infirmier(e)</i><i class="sf-only">sage-femme</i>.</h1>
+          <p class="chapo">L'Institut de Formation Supérieur des Paramédicaux Atsinanana forme à Toamasina, depuis 2011, dans le domaine « Science de la Santé ».</p>
+        </div>
+        <div class="bascule" role="radiogroup" aria-label="Filière">
+          <input type="radio" name="f" id="f-if" checked><label for="f-if">Infirmier(e)s</label>
+          <input type="radio" name="f" id="f-sf"><label for="f-sf">Sage-femmes</label>
+        </div>
+      </div>
+
+      <div class="planches">
+        <figure class="planche" style="margin:0">
+          <div class="arche"><span class="sol"></span>
+            <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M20 30h26a6 6 0 0 1 6 6v44a5 5 0 0 0-5-5H20z"/><path d="M80 30H56a6 6 0 0 0-6 6v44a5 5 0 0 1 5-5h25z"/><path class="touche" d="M26 42h16M26 50h16M26 58h12M58 42h16M58 50h16M58 58h10"/></svg>
+          </div>
+          <div class="rang">1re année</div><div class="nom">Fondements</div>
+          <p>Sciences de base, anatomie et premiers gestes de soin.</p>
+        </figure>
+        <figure class="planche" style="margin:0">
+          <div class="arche"><span class="sol"></span>
+            <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M34 18v22a16 16 0 0 0 32 0V18"/><path d="M50 56v10a14 14 0 0 0 28 0v-6"/><circle class="touche" cx="78" cy="54" r="6"/><path class="touche" d="M30 18h8M62 18h8"/></svg>
+          </div>
+          <div class="rang">2e année</div><div class="nom">Pratique</div>
+          <p class="if-only">Soins infirmiers et premiers stages encadrés.</p>
+          <p class="sf-only">Suivi de grossesse et premiers stages en maternité.</p>
+        </figure>
+        <figure class="planche" style="margin:0">
+          <div class="arche"><span class="sol"></span>
+            <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M22 80V34l28-14 28 14v46"/><path d="M40 80V60h20v20"/><path class="touche" d="M50 34v14M43 41h14"/></svg>
+          </div>
+          <div class="rang">3e année</div><div class="nom">Stages</div>
+          <p class="if-only">Stages en milieu hospitalier et mémoire de fin d'études.</p>
+          <p class="sf-only">Stages en salle d'accouchement et mémoire de fin d'études.</p>
+        </figure>
+        <figure class="planche" style="margin:0">
+          <div class="arche"><span class="sol"></span>
+            <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="18" y="30" width="64" height="40" rx="3"/><path d="M28 42h30M28 50h24"/><circle class="touche" cx="68" cy="56" r="8"/><path class="touche" d="m64 63-3 13 7-4 7 4-3-13"/></svg>
+          </div>
+          <div class="rang">Diplôme</div><div class="nom">Sortie</div>
+          <p>Titre reconnu, avec équivalence dans la Fonction publique.</p>
+        </figure>
+      </div>
+      <div class="fil-parcours" aria-hidden="true"></div>
+    </div>
+
+    <section id="agrements">
+      <h2>Un établissement autorisé et habilité</h2>
+      <p class="intro">Chaque étape de la vie de l'institut s'appuie sur un acte officiel du ministère de l'Enseignement supérieur.</p>
+      <div class="releve">
+        <div><span class="an">2011</span><span class="ref">N° 04460/2011-MESupRes</span><p>Autorisation d'ouverture de l'établissement supérieur privé.</p></div>
+        <div><span class="an">2011</span><span class="ref">N° 15482/2011-MESupRES</span><p>Habilitation de la formation, domaine « Science de la Santé ».</p></div>
+        <div><span class="an">2011</span><span class="ref">N° 23915/2011 CNEAT</span><p>Équivalence administrative du titre dans la Fonction publique.</p></div>
+        <div><span class="an">2024</span><span class="ref">N° 056/2024/MESupRes</span><p>Attestation de renouvellement du 3 avril 2024.</p></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Venir à l'institut</h2>
+      <dl class="contact">
+        <div><dt>Adresse</dt><dd><span class="a-completer">À compléter</span>, Toamasina</dd></div>
+        <div><dt>Téléphone</dt><dd><span class="a-completer">À compléter</span></dd></div>
+        <div><dt>Courriel</dt><dd><span class="a-completer">À compléter</span></dd></div>
+      </dl>
+    </section>
+    <footer>© IFSPA — Institut de Formation Supérieur des Paramédicaux Atsinanana</footer>
+  </main>
+</div>
+</body>
+</html>
